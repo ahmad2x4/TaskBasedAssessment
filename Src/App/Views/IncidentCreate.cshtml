@@ -1,0 +1,67 @@
+﻿
+<div class="page-header">
+    <h2>{{action}} Incident <small>{{incidentName}}</small></h2>
+</div>
+<form name="incidentForm" class="form-horizontal" role="form" novalidate>
+
+    <input type="hidden" ng-model="incident.sId" />
+
+    <div class="form-group" ng-class="{'has-error':incidentForm.incidentName.$invalid && submitted}">
+        <label for="incidentName" class="col-sm-2 control-label">Incident Name<span class="required">*</span></label>
+        <div class="col-sm-10">
+            <input class="form-control" id="incidentName" name="incidentName" placeholder="Incident Name" ng-model="incident.name" required>
+            <span class="requiredField" ng-show="incidentForm.incidentName.$invalid && submitted">Incident Name is required</span>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error':incidentForm.alert.$invalid && submitted}">
+        <label for="alert" class="col-sm-2 control-label">Alert Level</label>
+        <div class="col-sm-10">
+            <select id="alert" name="alert" class="form-control" ng-model="incident.alertLevel" ng-options="alert for alert in AlertLevels" required></select>
+            <span class="requiredField" ng-show="incidentForm.alert.$invalid && submitted">Alert Level is required</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="location" class="col-sm-2 control-label">Location</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="location" placeholder="Location" ng-model="incident.location">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="area" class="col-sm-2 control-label">Council Area</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="area" placeholder="Council Area" ng-model="incident.councilArea">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="status" class="col-sm-2 control-label">Status</label>
+        <div class="col-sm-10">
+            <select id="alert" name="status" class="form-control" ng-model="incident.status" ng-options="s for s in Status" required></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="type" class="col-sm-2 control-label">Type</label>
+        <div class="col-sm-10">
+            <select id="alert" name="alert" class="form-control" ng-model="incident.type" ng-options="t for t in Type" required></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="size" class="col-sm-2 control-label">Size</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="size" placeholder="Size" ng-model="incident.size">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="agency" class="col-sm-2 control-label">Agency</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="agency" placeholder="Agency" ng-model="incident.agency">
+        </div>
+    </div>
+
+
+    <div class="well">
+        <button class="btn btn-primary pull-right" ng-click="create($event,incident)">{{action}}</button>
+
+        <a class="btn btn-danger" ng-href="/incident">Back to All Incidents</a>
+
+    </div>
+</form>

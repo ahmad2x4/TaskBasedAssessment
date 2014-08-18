@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/" />
 
     <title>AngularJS App</title>
     @Styles.Render("~/css/app")
@@ -32,6 +33,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/incident">Incident</a></li>
+                    <li><a href="/userinfo">User Info</a></li>
                     <li><a href="/view1">View 1</a></li>
                     <li><a href="/view2">View 2</a></li>
                     <li class="dropdown">
@@ -48,7 +51,7 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Hello World</a></li>
+                    <li><a href="/login">Login</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -61,6 +64,8 @@
         <hr />
         <p>© Company 2014 - v<span app-version></span></p>
     </footer>
-    @Scripts.RenderFormat("<script src=\"{0}\"></script>", "~/js/angular", "~/js/jquery", "~/js/bootstrap", "~/js/app")
+    @Scripts.RenderFormat("<script src=\"{0}\"></script>", "~/js/angular", "~/js/jquery", "~/js/bootstrap", "~/js/app",
+            "//cdn.auth0.com/w2/auth0-widget-5.0.min.js",
+            "//cdn.auth0.com/w2/auth0-angular-1.1.min.js")
 </body>
 </html>

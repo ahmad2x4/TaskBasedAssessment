@@ -8,7 +8,9 @@ namespace App
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/js/angular", "//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js")
-                .Include("~/scripts/angular/angular.js"));
+                .Include("~/scripts/angular/angular.js")
+                .Include("~/scripts/angular/angular-cookies.js")
+                .Include("~/scripts/angular/angular-route.js"));
 
             bundles.Add(new ScriptBundle("~/js/jquery", "//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js")
                 .Include("~/scripts/jquery/jquery-1.9.0.js"));
@@ -19,8 +21,10 @@ namespace App
             bundles.Add(new ScriptBundle("~/js/app").Include(
                 "~/scripts/angular/angular-route.js",
                 "~/scripts/app.js",
+                "~/scripts/constants.js",
                 "~/scripts/filters.js",
                 "~/scripts/services.js",
+                "~/scripts/factory.js",
                 "~/scripts/directives.js",
                 "~/scripts/controllers.js"));
 

@@ -1,0 +1,44 @@
+﻿
+
+<div class="page-header">
+    <h2>Incidents <small>Incident list</small></h2>
+</div>
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr ng-click="setOrderField($event)" ng-class="{ orderbyreverse: isReverseOrder }" style="cursor:pointer;">
+                <th data-field="name" ng-class="{ orderby: orderField === 'name' }">Incident Name</th>
+                <th data-field="alertLevel" ng-class="{ orderby: orderField === 'alertLevel' }">Alert Level</th>
+                <th data-field="location" ng-class="{ orderby: orderField === 'location' }">Location</th>
+                <th data-field="councilArea" ng-class="{ orderby: orderField === 'councilArea' }">Council Area</th>
+                <th data-field="status" ng-class="{ orderby: orderField === 'status' }">Status</th>
+                <th data-field="type" ng-class="{ orderby: orderField === 'type' }">Type</th>
+                <th data-field="size" ng-class="{ orderby: orderField === 'size' }">Size</th>
+                <th data-field="agency" ng-class="{ orderby: orderField === 'agency' }">Responsible Agency</th>
+                <th data-field="updated" ng-class="{ orderby: orderField === 'updated' }">Last Updated</th>
+                <th>&nbsp;</th>
+            </tr>            
+        </thead>
+        <tbody>
+            <tr ng-repeat="incident in incidents | orderBy: orderField : isReverseOrder">
+                <td><a href="#/incident/{{incident.sId}}">{{incident.name}}</a></td>
+                <td>{{incident.alertLevel}}</td>
+                <td>{{incident.location}}</td>
+                <td>{{incident.councilArea}}</td>
+                <td>{{incident.status}}</td>
+                <td>{{incident.type}}</td>
+                <td>{{incident.size}}</td>
+                <td>{{incident.agency}}</td>
+                <td>{{incident.updated | date : 'dd MMMM yyyy H:m'}}</td>
+                <td><button class="label label-danger" ng-click="delete(incident.sId)">Delete</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<div class="well">
+    <a class="btn btn-primary" ng-href="/incident/create">Create New Incident</a>
+</div>

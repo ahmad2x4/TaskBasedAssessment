@@ -1,7 +1,11 @@
-﻿using System.Web.Http;
+﻿using System.Configuration;
+using System.Web.Http;
 using System.Web.Http.Validation;
 using App.Validation;
+using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
+using RFS.Incident.Api.App_Start;
+using RFS.Incident.Api.Repositories;
 
 namespace App
 {
@@ -9,6 +13,16 @@ namespace App
     {
         public static void Register(HttpConfiguration config)
         {
+
+
+            config.MessageHandlers.Add(new JsonWebTokenValidationHandler()
+            {
+                Audience = ConfigurationSettings.AppSettings["Auth0ClientId"],  // client id
+                SymmetricKey = ConfigurationSettings.AppSettings["Auth0Secret"]   // client secret
+            });
+
+            ConfigureContainer(config);
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
@@ -28,6 +42,13 @@ namespace App
 
             // Remove prefixes from ModelState keys
             config.Services.Replace(typeof(IBodyModelValidator), new CustomBodyModelValidator(new DefaultBodyModelValidator()));
+        }
+
+        private static void ConfigureContainer(HttpConfiguration config)
+        {
+            var container = new UnityContainer();
+            container.RegisterType<IIncidentRepository, IncidentRepository>(new HierarchicalLifetimeManager());
+            config.DependencyResolver = new UnityResolver(container);
         }
     }
 }
